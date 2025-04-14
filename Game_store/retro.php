@@ -26,7 +26,7 @@
                         <li class="nav-item"><a class="nav-link" href="retro.php">Consolas retro</a></li>
                         <li class="nav-item"><a class="nav-link" href="componentes.php">Componentes para pc gamer</a></li>
                         <li class="nav-item"><a class="nav-link" href="perifericos.php">Perifericos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
                     </ul>
                 </div>
