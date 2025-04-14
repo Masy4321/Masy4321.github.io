@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+    <header>
+
+    <img src="logo.jpeg" alt="" width="100" height="100">     <center><h1> &copy GAMEVARIETY STORE</h1></center>
+ 
+    </header>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+  <div class="container-fluid">
+    <a class="navbar-brand" href="general_games.php">Juegos en general</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="exclusivos.php">Cosas exclusivas/coleccionable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="retro.php">Consolas retro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="componentes.php">Componentes para pc gamer</a>
+        </li>        <li class="nav-item">
+          <a class="nav-link" href="perifericos.php">Perifericos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="carrito.html">Carrito</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="disscounts">
+        <h1>Descuentos</h1>
+        <div class="card-group">
+  <div class="card">
+    <img src="imagenes/halo.webp" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Halo infinite</h5>
+      <p class="card-text"> <s>649.99$</s> AHORA A: 450$ </p>
+      <p class="card-text"><small class="text-muted">Xbox series x|s</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="imagenes/BO6.webp" class="card-img-top" alt="..." height="900px">
+    <div class="card-body">
+      <h5 class="card-title">Black Ops 6 </h5>
+      <p class="card-text"><s>520$</s> AHORA A: 349.99$</p>
+      <p class="card-text"><small class="text-muted">Ps/Xbox New gen</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="imagenes/RE3.webp" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Resident Evil 3 </h5>
+      <p class="card-text"><s>400$</s> AHORA A: 159.99$</p>
+      <p class="card-text"><small class="text-muted">PS4/Xbox one</small></p>
+    </div>
+  </div>
+</div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

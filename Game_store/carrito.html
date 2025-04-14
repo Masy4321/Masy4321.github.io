@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/general_games.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Resetear márgenes y padding */
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Estilos para el header */
+        header {
+            color: #00A3FF;
+            width: 100%;
+            height: 150px;
+            background-color: #1F1229;
+            line-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+        /* Estilo para la navbar */
+        .navbar {
+            background-color: #1F1229;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #00A3FF !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff !important;
+        }
+
+        /* Estilo para el body */
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100vw;
+            padding: 20px;
+        }
+
+        /* Estilo del carrito */
+        .cart-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #00A3FF; /* Color azul del header */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item strong {
+            font-size: 1.1em;
+            color: #333333;
+        }
+
+        .cart-item-price {
+            color: #ff0000;
+            font-size: 1.1em;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: right;
+            color: #343a40;
+        }
+
+        .btn-primary {
+            background-color: #00A3FF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0088cc; /* Azul más oscuro */
+        }
+
+        /* Estilos del footer */
+        footer {
+            background-color: #1F1229;
+            color: #00A3FF;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .total {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+        <h1>&copy; GAMEVARIETY STORE</h1>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="general_games.php">Juegos en general</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="exclusivos.php">Cosas exclusivas/coleccionable</a></li>
+                    <li class="nav-item"><a class="nav-link" href="retro.php">Consolas retro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="componentes.php">Componentes para pc gamer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="perifericos.php">Perifericos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Regresar al inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="carrito.html">Carrito</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor del carrito -->
+    <div class="container">
+        <div class="cart-container">
+            <h2>Tu Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <div class="total">
+                Total: $<span id="total-price">0.00</span>
+            </div>
+            <div class="text-center">
+                <a href="checkout.html" class="btn btn-primary">Ir a pagar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 GAMEVARIETY STORE</p>
+    </footer>
+
+    <script>
+        // Obtener parámetros de la URL
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            const product = params.get('product');
+            const price = parseFloat(params.get('price'));
+            return { product, price };
+        }
+    
+        // Añadir un producto al carrito
+        function addProductToCart(product, price) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ product, price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+    
+        // Mostrar productos en el carrito
+        function displayCartItem() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            let currentTotal = 0;
+    
+            cartItemsContainer.innerHTML = ''; // Limpiar contenido anterior
+    
+            cartItems.forEach((item, index) => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item');
+                cartItemDiv.innerHTML = `
+                    <div><strong>${item.product}</strong></div>
+                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Eliminar</button>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+                currentTotal += item.price;
+            });
+    
+            totalPriceElement.textContent = currentTotal.toFixed(2);
+        }
+    
+        // Eliminar un producto por su índice
+        function removeItem(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.splice(index, 1); // Quitar 1 elemento desde el índice
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            displayCartItem(); // Actualizar vista
+        }
+    
+        // Añadir producto desde la URL
+        function addProductFromUrl() {
+            const { product, price } = getUrlParams();
+            if (product && !isNaN(price)) {
+                addProductToCart(product, price);
+    
+                // Limpiar los parámetros de la URL para evitar duplicados
+                const url = new URL(window.location);
+                url.search = '';
+                window.history.replaceState({}, '', url);
+            }
+        }
+    
+        // Ejecutar funciones
+        addProductFromUrl();
+        displayCartItem();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
